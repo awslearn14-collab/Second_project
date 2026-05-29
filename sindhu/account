@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char username[30], password[30];
+    FILE *fp;
+
+    printf("=== Create Account Page ===\n");
+
+    printf("Enter new username: ");
+    scanf("%s", username);
+
+    printf("Enter new password: ");
+    scanf("%s", password);
+
+    // Open file in append mode to store credentials
+    fp = fopen("accounts.txt", "a");
+    if (fp == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+
+    fprintf(fp, "%s %s\n", username, password);
+    fclose(fp);
+
+    printf("\nAccount created successfully!\n");
+    printf("Username: %s\n", username);
+    printf("Password: %s\n", password);
+
+    return 0;
+}
